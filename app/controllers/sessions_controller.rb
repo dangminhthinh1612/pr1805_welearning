@@ -8,8 +8,8 @@ class SessionsController < ApplicationController
       log_in user
       redirect_to user
     else
-      flash.now[:danger] = 'Invalid email/password combination'
-      render 'new'
+      flash.now[:danger] = "Tài khoản hoặc mật khẩu sai."
+      render :new
     end
   end
 
