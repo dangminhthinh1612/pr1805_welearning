@@ -14,7 +14,7 @@ gem "coffee-rails", "~> 4.2"
 gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.5"
 gem "bcrypt",         "3.1.12"
-gem "bootstrap-sass", "3.2.0.2"
+gem "bootstrap"
 gem "jquery-rails", "~> 4.3", ">= 4.3.3"
 
 group :development, :test do
