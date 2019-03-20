@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 gem "rails", "~> 5.1.6"
 gem "sqlite3", "~>1.3.7"
 gem "puma", "~> 3.7"
@@ -16,6 +15,7 @@ gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.5"
 gem "bcrypt",         "3.1.12"
 gem "bootstrap-sass", "3.2.0.2"
+gem "jquery-rails", "~> 4.3", ">= 4.3.3"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
