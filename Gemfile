@@ -16,6 +16,7 @@ gem "jbuilder", "~> 2.5"
 gem "bcrypt",         "3.1.12"
 gem "bootstrap"
 gem "jquery-rails", "~> 4.3", ">= 4.3.3"
+gem "mini_racer", platforms: :ruby
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
