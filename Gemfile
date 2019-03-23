@@ -13,9 +13,11 @@ gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.2"
 gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.5"
-gem "bcrypt",         "3.1.12"
+gem "bcrypt", "~> 3.1.12"
 gem "bootstrap"
 gem "jquery-rails", "~> 4.3", ">= 4.3.3"
+gem 'font-awesome-sass', '~> 5.8.1'
+gem 'faker', '~> 1.9', '>= 1.9.3'
 gem "mini_racer", platforms: :ruby
 
 group :development, :test do
