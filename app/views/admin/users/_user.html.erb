@@ -1,0 +1,11 @@
+<li>
+  <%= gravatar_for user, size: 50 %>
+  <%= link_to user.user_name, user %>
+
+  <!-- Chưa login thành công, chưa có current_user để đăng nhập -->
+  <% #if current_user.admin? && current_user?(user) %>
+  <% if !user.admin? %>
+  <%= link_to "Xóa tài khoản", user, method: :delete, data: {confirm: "Bạn muốn xóa tài khoản #{user.user_name} ?"}, class: "ml-1 mr-1 float-right btn btn-danger"%>
+  <%= link_to "Admin", "#", class: "ml-1 float-right btn btn-primary" %>
+  <% end %>
+</li>
