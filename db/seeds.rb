@@ -6,7 +6,7 @@ User.create!(user_name:  "UserZero",
              activated: true,
              activated_at: Time.zone.now)
 
-99.times do |n|
+10.times do |n|
   name  = Faker::Name.name
   email = "User0#{n+1}@email.com"
   password = "123456"
@@ -16,4 +16,9 @@ User.create!(user_name:  "UserZero",
                password_confirmation: password,
                activated: true,
                activated_at: Time.zone.now)
+end
+
+10.times do |n|
+  name = Faker::Educator.subject
+  Category.create!(tag: name)
 end

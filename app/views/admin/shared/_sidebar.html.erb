@@ -48,8 +48,8 @@
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="#">Đang bán</a>
-        <a class="collapse-item" href="#">Tạo mới</a>
+        <%= link_to "Đang bán", admin_courses_path, class: "collapse-item" %>
+        <%= link_to "Tạo mới", new_admin_course_path, class: "collapse-item" %>
         <a class="collapse-item" href="#">Khác</a>
       </div>
     </div>
