@@ -1,0 +1,10 @@
+//= require ./lib/jquery
+//= require ./lib/bootstrap.bundle
+//= require ./lib/jquery.easing
+//= require ./lib/sb-admin-2
+//= require ./lib/Chart
+//= require ./lib/chart-area-demo
+//= require ./lib/chart-pie-demo
+//= require rails-ujs
+//= require turbolinks
+//= require_tree .

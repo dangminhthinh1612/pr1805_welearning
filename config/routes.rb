@@ -15,4 +15,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :account_activations, only: [:edit]
+
+  namespace :admin do
+    root "dashboards#index"
+  end
 end
