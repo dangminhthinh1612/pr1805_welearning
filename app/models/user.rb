@@ -12,8 +12,7 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, length: { minimum: 6 }
-
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   class << self
 
@@ -33,7 +32,7 @@ class User < ApplicationRecord
     update_attribute :activated_at, Time.zone.now
   end
 
-  def authenticated? attribute, token
+  def authenticated?(attribute, token)
     digest = self.send("#{attribute}_digest")
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password? token
@@ -60,8 +59,6 @@ class User < ApplicationRecord
   def clear_reset_digest
     update_attribute :reset_digest, nil
   end
-
-  private
 
   def remember
     self.remember_token = User.new_token
