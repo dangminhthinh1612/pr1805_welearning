@@ -3,11 +3,10 @@
   <%= link_to user.user_name, user %>
 
   <% if current_user.admin? && !current_user?(user) && !user.admin?%>
-    <%= link_to "Xóa tài khoản", user, method: :delete,
-      data: {confirm: "Bạn muốn xóa tài khoản #{user.user_name} ?"},
-      class: "ml-1 mr-1 float-right btn btn-danger"%>
-
+    <%= link_to "Xóa tài khoản", admin_user_path(user), method: :delete,
+      data: { confirm: "Bạn muốn xóa tài khoản #{user.user_name} ?" },
+      class: "ml-1 mr-1 float-right btn btn-danger btn-sm"%>
     <%= link_to "Admin","#",
-      class: "ml-1 float-right btn btn-primary" %>
+      class: "ml-1 float-right btn btn-primary btn-sm" %>
   <% end %>
 </li>

@@ -1,5 +1,5 @@
 <% provide :title, "Quản lý khóa học" %>
-<table width="95%" align="center" class="table-hover">
+<table width="95%" align="center" class="table table-dark table-hover">
   <thead>
     <tr>
       <th>ID</th>
@@ -11,17 +11,11 @@
       <th>Chi tiết</th>
       <th>Xóa</th>
     </tr>
-  </thead>
-
-  <%= will_paginate(@courses,
-    :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,
-    class: "mt-2 ml-1 pagination-sm d-flex justify-content-end")%>
-
-  <ul class="courses">
-    <%= render @courses %>
-  </ul>
-
-  <%= will_paginate(@courses,
-    :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,
-    class: "mt-2 ml-1 pagination-sm d-flex justify-content-end")%>
+    </thead>
+    <ul class="courses">
+      <%= render @courses %>
+    </ul>
 </table>
+<%= will_paginate(@courses,
+  :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,
+  class: "mt-2 ml-1 pagination-sm d-flex justify-content-end")%>

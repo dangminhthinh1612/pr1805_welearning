@@ -21,6 +21,10 @@ Rails.application.routes.draw do
     root "dashboards#index"
 
     resources :users, only: [:index, :edit, :update, :destroy]
-    resources :courses, only: [:index, :edit, :update, :destroy]
+    scope shallow_prefix: "sname" do
+      resources :courses do
+        resources :lessons, shallow: true
+      end
+    end
   end
 end

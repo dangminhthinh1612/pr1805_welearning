@@ -22,3 +22,21 @@ end
   name = Faker::Educator.subject
   Category.create!(tag: name)
 end
+
+20.times do |n|
+  name = Faker::Educator.degree
+  description = Faker::Lorem.sentence(5)
+  tag = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].sample
+  price = [100000, 300000, 500000, 700000, 900000].sample
+  Course.create!(name: name,
+                 description: description,
+                 category_id: tag,
+                 price: price)
+end
+courses = Course.order(:created_at).take(8)
+15.times do
+  lesson_title = Faker::Educator.course_name
+  lesson_content = Faker::Lorem.sentence(5)
+  courses.each {|course| course.lessons.create!(lesson_title: lesson_title,
+    lesson_content: lesson_content)}
+end

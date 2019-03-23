@@ -2,11 +2,11 @@
 <h1 style="text-align: center;">Quản lý tài khoản</h1>
 
 <%= will_paginate(@users,
-    :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,
-    class: "mt-2 ml-1 pagination-sm d-flex justify-content-end") %>
+  :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,
+  class: "mt-2 ml-1 pagination-sm d-flex justify-content-end") %>
 <ul class="users">
   <%= render @users %>
 </ul>
 <%= will_paginate(@users,
-    :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,
-    class: "mt-2 ml-1 pagination-sm d-flex justify-content-end")%>
+  :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,
+  class: "mt-2 ml-1 pagination-sm d-flex justify-content-end")%>
