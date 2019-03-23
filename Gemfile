@@ -17,6 +17,7 @@ gem "bcrypt", "~> 3.1.12"
 gem "bootstrap"
 gem "jquery-rails", "~> 4.3", ">= 4.3.3"
 gem "font-awesome-sass", "~> 5.8.1"
+gem "faker", "~> 1.9", ">= 1.9.3"
 gem "mini_racer", platforms: :ruby
 
 group :development, :test do
