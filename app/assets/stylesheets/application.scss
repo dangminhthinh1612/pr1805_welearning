@@ -10,7 +10,17 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require_directory .
+ *= require user/font_google
+ *= require user/animate
+ *= require user/icomoon
+ *= require user/magnific-popup
+ *= require user/flexslider
+ *= require user/owl.carousel.min
+ *= require user/owl.theme.default.min
+ *= require user/flaticon
+ *= require user/style
  */
 
+ @import "bootstrap";
