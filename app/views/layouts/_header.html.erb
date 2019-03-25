@@ -1,26 +1,121 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">W.E Learning</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul>
+<nav class="colorlib-nav" role="navigation">
+  <div class="upper-menu">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <p>The ideal WordPress theme for online learning center</p>
+        </div>
+        <div class="col-8 text-right">
+          <p class="btn-apply"><%= link_to "Đăng nhập", "#" %><%= link_to "Đăng ký", "#" %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="top-menu">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2">
+          <div id="colorlib-logo"><%= link_to "W.E Learn", root_path %>
+          </div>
+        </div>
+        <div class="col-lg-10 text-right menu-1">
+          <ul>
+            <li class="has-dropdown"> <a href="courses.html">Khóa học</a>
+              <ul class="dropdown">
+                <li><a href="courses-single.html">Courses Single</a>
+                </li>
+                <li><a href="#">Mobile Apps</a>
+                </li>
+                <li><a href="#">Website</a>
+                </li>
+                <li><a href="#">Web Design</a>
+                </li>
+                <li><a href="#">WordPress</a>
+                </li>
+              </ul>
+            </li>
+            <li><a href="teachers.html">Teachers</a>
+            </li>
+            <li class="btn-cta"><a href="#"><span>Get started</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
+<aside id="colorlib-hero">
+  <div class="flexslider">
+    <ul class="slides">
+      <li style="background-image: url(<%= image_path("img_bg_1.jpg")%>);">
+        <div class="overlay"></div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-8 col-md-12 offset-md-2 col-12 order-md-1 slider-text">
+              <div class="slider-text-inner">
+                <div class="desc">
+                  <h2>You only have to know one thing</h2>
+                  <h1>Best Online Learning System</h1>
+                  <p><a href="https://vimeo.com/channels/staffpicks/93951774" class="btn btn-primary btn-lg popup-vimeo"><span class="icon"><i class="icon-play3"></i></span> Start Learning Now!</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li style="background-image: url(<%= image_path("img_bg_5.jpg")%>);">
+        <div class="overlay"></div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-8 col-md-12 offset-md-2 col-12 order-md-1 slider-text">
+              <div class="slider-text-inner">
+                <div class="desc">
+                  <h2>You only have to know one thing</h2>
+                  <h1>Online Free Course</h1>
+                  <p><a href="https://vimeo.com/channels/staffpicks/93951774" class="btn btn-primary btn-lg popup-vimeo"><span class="icon"><i class="icon-play3"></i></span> Start Learning Now!</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li style="background-image: url(<%= image_path("img_bg_3.jpg")%>);">
+        <div class="overlay"></div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-8 col-md-12 offset-md-2 col-12 order-md-1 slider-text">
+              <div class="slider-text-inner">
+                <div class="desc">
+                  <h2>You only have to know one thing</h2>
+                  <h1>Education is a Key to Success</h1>
+                  <p><a href="https://vimeo.com/channels/staffpicks/93951774" class="btn btn-primary btn-lg popup-vimeo"><span class="icon"><i class="icon-play3"></i></span> Start Leaning Now!</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li style="background-image: url(<%= image_path("img_bg_4.jpg")%>);">
+        <div class="overlay"></div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-8 col-md-12 offset-md-2 col-12 order-md-1 slider-text">
+              <div class="slider-text-inner">
+                <div class="desc">
+                  <h2>You only have to know one thing</h2>
+                  <h1>Best Online Learning Center</h1>
+                  <p><a href="https://vimeo.com/channels/staffpicks/93951774" class="btn btn-primary btn-lg popup-vimeo"><span class="icon"><i class="icon-play3"></i></span> Start Learning Now!</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</aside>
