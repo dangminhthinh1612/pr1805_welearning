@@ -19,6 +19,12 @@ class UsersController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    User.find_by(id: params[:id]).destroy
+    flash.now[:success] = "Xóa tài khoản thành công!"
+    redirect_to admin_users_path
+  end
   private
 
   def user_params
