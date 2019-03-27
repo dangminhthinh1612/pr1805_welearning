@@ -1,7 +1,12 @@
-//= require jquery
-//= require bootstrap
+//= require admin/application
 //= require rails-ujs
-//= require jquery3
-//= require popper
 //= require turbolinks
 //= require_tree .
+<script type="text/javascript">
+  $('#micropost_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>

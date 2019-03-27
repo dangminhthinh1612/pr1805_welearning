@@ -1,1 +1,16 @@
-show.html.erb
+<%= provide :tittle,'Thông tin cá nhân của bạn' %>
+<h1 align="justify">Thông tin cá nhân của bạn</h1>
+
+<div class="col-md-offset-3">
+  <div class="row-md-6 row-md-offset-3">
+    <%=  image_tag current_user.picture %><br>
+    <p align="justify">Họ và tên: <%=  current_user.user_name %><br>
+    Thẻ căn cước: <%= current_user.id_card %><br>
+    Email: <%=  current_user.email %><br>
+    Số điện thoại: <%= current_user.phone_number %>
+    </p><br>
+  </div>
+  <p align="justify">
+    <%= link_to "Thay đổi thông tin", edit_user_path, class: "btn btn-primary" %>
+  </p>
+</div>

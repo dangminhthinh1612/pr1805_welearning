@@ -22,6 +22,12 @@ gem "will_paginate", "~> 3.1", ">= 3.1.7"
 gem "bootstrap-will_paginate", "~> 1.0"
 gem "mini_racer", platforms: :ruby
 gem "figaro"
+gem "carrierwave"
+gem "mini_magick", "4.7.0"
+
+group :production do
+   gem "fog", "1.42"
+end
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

@@ -102,6 +102,11 @@ ActiveRecord::Schema.define(version: 20190326184506) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.string "picture"
+    t.string "phone_number"
+    t.string "date_of_birth"
+    t.string "address"
+    t.string "id_card"
     t.boolean "admin", default: false
   end
 

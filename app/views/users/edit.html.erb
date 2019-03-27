@@ -1,0 +1,40 @@
+<% provide :title, "Edit user" %>
+
+<div class="row">
+  <div class="col-md-8 offset-md-4">
+    <h1>Cập nhật thông tin cá nhân</h1>
+    <%= form_for @user do |f| %>
+      <%= render "shared/error_messages" %>
+
+      <%= f.label :name, "Họ và tên" %>
+      <%= f.text_field :user_name, class: "form-control" %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control" %>
+
+      <%= f.label :id_card, "Thẻ căn cước" %>
+      <%= f.number_field :id_card, class: "form-control" %>
+
+      <%= f.label :phone_number, "Số điện thoại" %>
+      <%= f.number_field :phone_number, class: "form-control" %>
+
+      <%= f.label :password, "Mật khẩu" %>
+      <%= f.password_field :password, class: "form-control" %>
+
+      <%= f.label :password_confirmation, "Xác nhận mật khẩu" %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+      <br>
+      <span class="picture">
+        <% if current_user.picture? %>
+          <%= image_tag current_user.picture %>
+          <%= f.label :picture, "Thay đổi avatar" %>
+          <%= f.file_field :picture, accept: "image/jpeg,image/gif,image/png" %>
+        <% else %>
+          <%= f.file_field :picture, accept: "image/jpeg,image/gif,image/png" %>
+        <% end %>
+      </span>
+      <br>
+      <%= f.submit "Lưu thay đổi", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
