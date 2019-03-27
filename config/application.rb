@@ -18,8 +18,8 @@ module Pr1805Welearning
       address:              "smtp.gmail.com",
       port:                 587,
       domain:               "google.com",
-      user_name:            "huungocruby08@gmail.com",
-      password:             "a1234567!",
+      user_name:            ENV["source_mail_address"],
+      password:             ENV["source_mail_pass"],
       authentication:       'plain',
       enable_starttls_auto: true
     }
