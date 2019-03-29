@@ -1,12 +1,13 @@
-<li>
+<li class="<%=activated_user user%>">
   <%= gravatar_for user, size: 50 %>
   <%= link_to user.user_name, user %>
-
-  <% if current_user.admin? && !current_user?(user) && !user.admin?%>
+  <%=user.email%>
+  <% if current_user.admin? && !current_user?(user) %>
     <%= link_to "Xóa tài khoản", admin_user_path(user), method: :delete,
-      data: { confirm: "Bạn muốn xóa tài khoản #{user.user_name} ?" },
-      class: "ml-1 mr-1 float-right btn btn-danger btn-sm"%>
-    <%= link_to "Admin","#",
-      class: "ml-1 float-right btn btn-primary btn-sm" %>
+      data: {confirm: "Bạn muốn xóa tài khoản #{user.user_name} ?"},
+        class: "ml-1 mr-1 float-right btn btn-danger"%>
+    <div id="admin_button_<%= user.id %>" class="d-inline">
+      <%= render "admin/users/admin", user: user %>
+    </div>
   <% end %>
 </li>

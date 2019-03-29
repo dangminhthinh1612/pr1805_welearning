@@ -15,6 +15,8 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   mount_uploader :picture, PictureUploader
   validate  :picture_size
+  scope :search, ->(term){where("user_name LIKE :u_term OR email LIKE :u_term",
+    u_term: "%#{term}%")}
 
   class << self
 
@@ -70,7 +72,12 @@ class User < ApplicationRecord
   def forget
     update_attribute :remember_digest, nil
   end
-  
+
+  # def self.search term
+  #   return all unless term
+  #     where("user_name LIKE :u_term OR email LIKE :u_term", u_term: "%#{term}%")
+  # end
+
   private
   def create_activation_digest
       self.activation_token  = User.new_token

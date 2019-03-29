@@ -26,5 +26,6 @@ Rails.application.routes.draw do
         resources :lessons, shallow: true
       end
     end
+    resources :search, only: [:index]
   end
 end

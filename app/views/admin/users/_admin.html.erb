@@ -1,0 +1,9 @@
+<% if user.admin %>
+  <%= link_to "Cancel Admin", admin_user_path(user), remote: true,
+    method: :patch, data: {confirm: "Bỏ quyền Admin của #{user.user_name} ?"},
+    class: "ml-1 float-right btn btn-primary btn_width" %>
+<% else %>
+  <%= link_to "Asign Admin", admin_user_path(user), remote: true,
+    data: { confirm: "Chuyển #{user.user_name} thành quyền Admin ?" }, method: :patch,
+    class: "ml-1 float-right btn btn-primary btn_width" %>
+<% end %>
