@@ -16,4 +16,8 @@ class Admin::BaseController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def find_course
+    @course = Course.find_by id: params[:id]
+  end
 end

@@ -21,12 +21,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    User.find_by(id: params[:id]).destroy
-    flash.now[:success] = "Xóa tài khoản thành công!"
-    redirect_to admin_users_path
-  end
-
   def update
     if @user.update_attributes user_params
       flash[:success] = "Profile updated"

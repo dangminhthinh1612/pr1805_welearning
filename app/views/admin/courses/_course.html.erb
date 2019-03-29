@@ -1,0 +1,13 @@
+<tbody>
+  <tr>
+    <td><%= course.id %></td>
+    <td><%= course.name %></td>
+    <td><%= course.category.tag %></td>
+    <td><%= course.rate %></td>
+    <td><%= course.price %></td>
+    <td><%= course.buy_times %></td>
+    <td><%= link_to "Chi tiết", [:admin, course] %></td>
+    <td><%= link_to "Xóa", [:admin, course], method: :delete,
+          data: {confirm: "Xác nhận xóa khóa học #{course.name}"} %></td>
+  </tr>
+</tbody>
