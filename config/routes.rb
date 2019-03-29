@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :users, except: :index
   resources :account_activations, only: :edit
   resources :password_resets, except: :show
+  resources :searches, only: :index
+  resources :courses, only: [:index, :show]
 
   namespace :admin do
     root "dashboards#index"
@@ -26,6 +28,6 @@ Rails.application.routes.draw do
         resources :lessons, shallow: true
       end
     end
-    resources :search, only: [:index]
+    resources :searches, only: :index
   end
 end
