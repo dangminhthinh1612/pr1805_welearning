@@ -1,18 +1,5 @@
-<h1 align="center">Thiết kế khóa học</h1>
+<% provide :title, "Thiết kế khóa học" %>
+<% provide :button, "Tạo khóa học" %>
 
-<div class="row d-flex justify-content-center">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for [:admin, @course] do |f| %>
-      <%= f.label :name, "Tên khóa học" %>
-      <%= f.text_field :name, class: "form-control mb-2" %>
-      <%= f.label :description, "Mô tả" %>
-      <%= f.text_area :description, class: "form-control mb-2" %>
-      <%= f.label :course_tag, "Phân loại khóa học" %>
-      <%= f.select :category_id, Category.pluck(:tag, :id), {}, class: "form-control" %><br>
-      <%= f.label :price, "Giá khóa học" %>
-      <%= f.number_field :price, class: "form-control mb-2" %>
-      <%= f.submit "Tạo khóa học mới",
-        class: "mt-3 btn btn-primary btn-sm btn-block" %>
-    <% end %>
-  </div>
-</div>
+<h1 align="center">Thiết kế khóa học</h1>
+<%= render "form" %>

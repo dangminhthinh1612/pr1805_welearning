@@ -4,7 +4,7 @@
   <div class="col-md-8 offset-md-4">
     <h1>Cập nhật thông tin cá nhân</h1>
     <%= form_for @user do |f| %>
-      <%= render "shared/error_messages" %>
+      <%= render "shared/error_messages", object: f.object %>
 
       <%= f.label :name, "Họ và tên" %>
       <%= f.text_field :user_name, class: "form-control" %>
