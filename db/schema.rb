@@ -42,12 +42,8 @@ ActiveRecord::Schema.define(version: 20190329121856) do
     t.integer "buy_times"
     t.float "rate"
     t.integer "price"
-    t.text "description"
-    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id", "created_at"], name: "index_courses_on_category_id_and_created_at"
-    t.index ["category_id"], name: "index_courses_on_category_id"
   end
 
   create_table "excercises", force: :cascade do |t|
