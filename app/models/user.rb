@@ -2,12 +2,12 @@ class User < ApplicationRecord
   has_many :user_courses, class_name: UserCourse.name
   has_many :courses, through: :user_courses
   has_many :carts, class_name: Cart.name
-  has_many :courses, through: :carts
 
   attr_accessor :remember_token, :activation_token, :reset_token
 
   before_create :create_activation_digest
   before_save { self.email = email.downcase }
+  
   validates :user_name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -17,6 +17,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   mount_uploader :picture, PictureUploader
   validate  :picture_size
+
   scope :search, ->(term){where("user_name LIKE :u_term OR email LIKE :u_term",
     u_term: "%#{term}%")}
 

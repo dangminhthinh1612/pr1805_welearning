@@ -17,8 +17,11 @@ Rails.application.routes.draw do
   resources :password_resets, except: :show
   resources :searches, only: :index
   resources :courses, only: [:index, :show]
-  resources :users, except: :index do
-    resources :carts
+  scope shallow_prefix: "ucname" do
+    resources :users, except: :index do
+      resources :user_courses, shallow: true
+      resources :carts, shallow: true
+    end
   end
 
   namespace :admin do

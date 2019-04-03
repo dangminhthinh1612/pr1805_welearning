@@ -1,22 +1,40 @@
-<h2 align="center">Tìm kiếm</h2>
-<%= form_for :search, url: searches_path, method: :get do |f| %>
-  <%= f.label :title, "Tên khóa học" %>
-  <%= f.text_field :title, class: "form-control" %>
+<div class="row">
+  <div class="col-lg-8">
+    <% if @results.present? %>
+      <% @results.each do |result| %>
+        <li>
+          <%= link_to result.name, course_path(result) %>
+        </li>
+      <% end %>
+    <% else @results = []%>
+      <h2 align="center">Tìm kiếm khóa học ngay!</h2>
+      <i class="far fa-hand-point-right d-flex justify-content-around"></i>
+    <% end %>
+  </div>
+  <div class="col-lg-4">
+    <h2 align="center">Tìm kiếm</h2>
+    <%= form_for :search, url: searches_path, method: :get do |f| %>
+      <%= f.label :title, "Tên khóa học" %>
+      <%= f.text_field :title, class: "form-control" %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.label :price_lt, "Giá thấp hơn" %>
+          <%= f.text_field :price_lt, class: "form-control" %>
+        </div>
+        <div class="col-sm">
+          <%= f.label :price_gt, "Giá cao hơn" %>
+          <%= f.text_field :price_gt, class: "form-control" %>
+        </div>
+      </div>
 
-  <%= f.label :category_ids, "Thư viện" %>
-  <%= f.collection_check_boxes :category_ids, Category.all, :id, :tag do |b|%>
-    <%= b.label class:"d-block form-check-label" do %>
-      <%= b.check_box class:"form-check-input"%>
-      <%= b.text %>
-    <% end%>
-  <% end %>
-  <%= f.submit "Tìm kiếm", class: "btn btn-success" %>
-<% end %>
-
-<% if @results %>
-  <% @results.each do |result| %>
-    <li>
-      <%= link_to result.name, course_path(result) %>
-    </li>
-  <% end %>
-<% end %>
+      <%= f.label :category_ids, "Thư viện" %>
+      <%= f.collection_check_boxes :category_ids, Category.all, :id, :tag do |b|%>
+        <%= b.label class:"d-block form-check-label" do %>
+          <%= b.check_box class:"form-check-input"%>
+          <%= b.text %>
+        <% end%>
+      <% end %>
+      <%= f.submit "Tìm kiếm", class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

@@ -7,18 +7,18 @@
       <th>Bỏ</th>
     </tr>
   </thead>
-  <ul class="carts">
-    <% @carts.each do |cart| %>
+  <ul class="user_courses">
+    <% @user_courses.each do |user_course| %>
       <tbody>
-        <% unless cart.paid %>
-          <td><%= cart.course.name %></td>
-          <td><%= cart.course.price %></td>
+        <% if user_course.in_cart? %>
+          <td><%= user_course.course.name %></td>
+          <td><%= user_course.course.price %></td>
           <td>
-            <%= link_to user_cart_path(current_user, id: cart.course_id), method: :delete do %>
+            <%= link_to ucname_user_course_path(user_course), method: :delete do %>
               <i class="fas fa-trash-alt text-dark"></i>
             <% end %>
           </td>
-          <% @payment += cart.course.price %>
+          <% @payment += user_course.course.price %>
         <% end %>
       </tbody>
     <% end %>
@@ -26,11 +26,10 @@
 </table>
 <hr>
 <div class="row d-flex justify-content-between">
-  <%= link_to user_cart_path(current_user, id: @course_unpaid.ids),
-    method: :patch, data: { confirm: "Xác nhận thanh toán #{@payment}$ ?" },
-    class: "btn btn-danger" do %>
+  <%= button_to [:user, :carts], class: "btn btn-danger ml-3",
+    data: { confirm: "Xác nhận thanh toán #{@payment}$ ?" } do %>
     <i class="fas fa-money-check-alt"></i>
     <span>Thanh toán</span>
   <% end %>
-  <h2>Tổng tiền: <%= @payment %></h2>
+  <h2 class="mr-3">Tổng tiền: <%= @payment %></h2>
 </div>
