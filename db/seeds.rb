@@ -24,7 +24,7 @@ end
 end
 
 20.times do |n|
-  name = Faker::Educator.degree
+  name = Faker::Educator.course_name
   description = Faker::Lorem.sentence(5)
   tag = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].sample
   price = [100000, 300000, 500000, 700000, 900000].sample

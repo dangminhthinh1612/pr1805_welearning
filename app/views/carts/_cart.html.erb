@@ -1,0 +1,26 @@
+<% @payment = 0 %>
+<table width="100%" align="center" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Tên khóa học</th>
+      <th>Giá tiền</th>
+      <th>Bỏ</th>
+    </tr>
+  </thead>
+  <ul class="carts">
+    <% @carts.each do |cart| %>
+      <tbody>
+        <td><%= cart.course.name %></td>
+        <td><%= cart.course.price %></td>
+        <td>
+          <%= link_to user_cart_path(current_user, id: cart.course_id), method: :delete do %>
+            <i class="fas fa-trash-alt text-danger"></i>
+          <% end %>
+        </td>
+      </tbody>
+      <% @payment += cart.course.price %>
+    <% end %>
+  </ul>
+</table>
+<hr>
+<h2>Thanh toán: <%= @payment %></h2>
