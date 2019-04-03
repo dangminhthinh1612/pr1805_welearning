@@ -1,0 +1,21 @@
+<% provide :title, "Quản lý khóa học" %>
+<table width="100%" align="center" class="table table-dark table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Tên khóa học</th>
+      <th>Phân loại</th>
+      <th>Đánh giá</th>
+      <th>Giá tiền</th>
+      <th>Lượt mua</th>
+      <th>Chi tiết</th>
+      <th>Xóa</th>
+    </tr>
+    </thead>
+    <ul class="courses">
+      <%= render @courses %>
+    </ul>
+</table>
+<%= will_paginate(@courses,
+  :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,
+  class: "mt-2 ml-1 pagination-sm d-flex justify-content-end")%>

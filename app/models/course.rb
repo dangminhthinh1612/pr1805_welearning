@@ -10,4 +10,9 @@ class Course < ApplicationRecord
   validates :description, presence: true
   validates :price, presence: true
   validates :category_id, presence: true
+
+  scope :by_title, -> (title){ where("(courses.name) LIKE :search", search: "%#{title}%")}
+  scope :by_category_ids, -> (category_ids) do
+    joins(:category).where "category_id IN (?)", category_ids
+  end
 end
