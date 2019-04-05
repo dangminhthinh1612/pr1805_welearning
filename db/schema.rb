@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190329121856) do
+ActiveRecord::Schema.define(version: 20190405125016) do
 
   create_table "answers", force: :cascade do |t|
     t.string "answer_content"
@@ -42,8 +42,13 @@ ActiveRecord::Schema.define(version: 20190329121856) do
     t.integer "buy_times"
     t.float "rate"
     t.integer "price"
+    t.text "description"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture"
+    t.index ["category_id", "created_at"], name: "index_courses_on_category_id_and_created_at"
+    t.index ["category_id"], name: "index_courses_on_category_id"
   end
 
   create_table "excercises", force: :cascade do |t|
