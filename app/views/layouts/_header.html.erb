@@ -16,7 +16,7 @@
           <%= link_to "About", "#", class: "nav-link" %>
         </li>
         <li>
-          <%= link_to "Contact", "#", class: "nav-link" %>
+          <%= link_to "Khóa học", courses_path, class: "nav-link" %>
         </li>
         <li>
           <%= link_to "Tìm kiếm", searches_path, class: "nav-link" %>
@@ -31,19 +31,23 @@
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-              <a class="dropdown-item" href="<%= user_path current_user%>">
+              <%= link_to (user_path current_user), class: "dropdown-item" do %>
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                Trang cá nhân
-              </a>
-              <a class="dropdown-item" href="<%= edit_user_path current_user %>">
+                <span>Trang cá nhân</span>
+              <% end %>
+              <%= link_to (edit_user_path current_user), class: "dropdown-item" do %>
                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                Thiết lập
-              </a>
+                <span>Thiết lập</span>
+              <% end %>
+              <%= link_to (user_carts_path(current_user.id)), class: "dropdown-item" do %>
+                <i class="fas fa-shopping-basket mr-2 text-gray-400"></i>
+                <span>Giỏ hàng</span>
+              <% end %>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+              <%= link_to "#", data: { toggle: :modal, target: "#logoutModal" }, class: "dropdown-item" do %>
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                Đăng xuất
-              </a>
+                <span>Đăng xuất</span>
+              <% end %>
             </div>
           </li>
         <% else %>
