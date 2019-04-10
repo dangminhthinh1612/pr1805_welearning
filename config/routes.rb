@@ -24,12 +24,12 @@ Rails.application.routes.draw do
   namespace :admin do
     root "dashboards#index"
 
-    resources :users, only: [:index, :edit, :update, :destroy]
     scope shallow_prefix: "sname" do
       resources :courses do
         resources :lessons, shallow: true
       end
     end
     resources :searches, only: :index
+    resources :users
   end
 end
