@@ -1,2 +1,20 @@
-<h2><%= @course.name %></h2>
-<p><%= @course.description %></p>
+<%= provide :tittle, @course.name %>
+<h1 align="justify">
+  <%= @course.name %>
+</h1>
+<div class="col-md-offset-3">
+  <div class="row-md-6 row-md-offset-3">
+    <%= image_tag @course.picture %><br>
+      <p align="justify"> Mô tả: <%= @course.description %><br>
+      Số lần được mua: <%= @course.buy_times %><br>
+      Giá tiền: <%= @course.price %><br>
+      Đánh giá: <%= @course.rate %> </p><br>
+  </div>
+  <p align="justify">
+    <% if current_user.courses.ids.include? course.id %>
+      <%= link_to "Đã ở trong giỏ hàng", user_carts_path(current_user), class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to "Cho vào giỏ hàng", user_carts_path(current_user), method: :post, class: "btn btn-primary" %>
+    <% end %>
+  </p>
+</div>

@@ -1,0 +1,36 @@
+<% @payment = 0 %>
+<table width="100%" align="center" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Tên khóa học</th>
+      <th>Giá tiền</th>
+      <th>Bỏ</th>
+    </tr>
+  </thead>
+  <ul class="carts">
+    <% @carts.each do |cart| %>
+      <tbody>
+        <% unless cart.paid %>
+          <td><%= cart.course.name %></td>
+          <td><%= cart.course.price %></td>
+          <td>
+            <%= link_to user_cart_path(current_user, id: cart.course_id), method: :delete do %>
+              <i class="fas fa-trash-alt text-dark"></i>
+            <% end %>
+          </td>
+          <% @payment += cart.course.price %>
+        <% end %>
+      </tbody>
+    <% end %>
+  </ul>
+</table>
+<hr>
+<div class="row d-flex justify-content-between">
+  <%= link_to user_cart_path(current_user, id: @course_unpaid.ids),
+    method: :patch, data: { confirm: "Xác nhận thanh toán #{@payment}$ ?" },
+    class: "btn btn-danger" do %>
+    <i class="fas fa-money-check-alt"></i>
+    <span>Thanh toán</span>
+  <% end %>
+  <h2>Tổng tiền: <%= @payment %></h2>
+</div>

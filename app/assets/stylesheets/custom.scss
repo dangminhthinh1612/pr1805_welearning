@@ -1,5 +1,6 @@
 @import "bootstrap";
 
+
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
@@ -44,4 +45,12 @@ input {
 
 .submit-btn {
   margin-top: 15px;
+}
+
+body {
+  padding-top: 100px;
+}
+.fa-frown-open {
+  font-size: 400px;
+  color: #ffcccc;
 }

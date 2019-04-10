@@ -45,7 +45,7 @@ class Admin::CoursesController < Admin::BaseController
   private
   def course_params
     params.require(:course).permit :name, :price, :description, :rate,
-      :buy_time, :category_id
+      :buy_time, :category_id, :picture
   end
 
   def current_course
