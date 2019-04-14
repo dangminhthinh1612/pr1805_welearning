@@ -19,7 +19,7 @@
       <th>Xóa</th>
     </tr>
   </thead>
-  <% if @course.lessons.any? %>
+  <% if @course.lessons.present? %>
       <ol class="lessons">
         <%= render @lessons %>
       </ol>

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resources :carts, shallow: true
     end
   end
+  resources :messages, only: [:create, :index], path: "chat"
 
   namespace :admin do
     root "dashboards#index"

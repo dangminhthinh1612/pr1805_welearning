@@ -65,3 +65,19 @@ body {
   font-size: 300px;
   color: #ffcccc;
 }
+
+.message-show {
+  .mess-user {
+    font-family: Courier New;
+    font-size: 12px;
+    width: 10%;
+    background-color: #e6ffe6;
+  }
+
+  .mess-content {
+    font-family: Courier New;
+    width: 80%;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+}
