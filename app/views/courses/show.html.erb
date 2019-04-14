@@ -2,28 +2,85 @@
 <h1 align="justify">
   <%= @course.name %>
 </h1>
-<div class="col-md-offset-3">
-  <div class="row-md-6 row-md-offset-3">
-    <%= image_tag @course.picture %><br>
-      <p align="justify"> Mô tả: <%= @course.description %><br>
-      Số lần được mua: <%= @course.buy_times %><br>
-      Giá tiền: <%= @course.price %><br>
-      Đánh giá: <%= @course.rate %> </p><br>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item active">
+    <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info"
+      role="tab" aria-controls="info" aria-selected="true">Thông tin</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="detail-tab" data-toggle="tab" href="#detail"
+      role="tab" aria-controls="detail" aria-selected="false">Chi tiết</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="rate-tab" data-toggle="tab" href="#rate"
+      role="tab" aria-controls="rate" aria-selected="false">Đánh giá</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active in" id="info" role="tabpanel" aria-labelledby="info-tab">
+    <div class="card">
+      <div class="table">
+        <%= image_tag @course.picture %>
+          <ol>Mô tả: <%= @course.description %></ol>
+          <ol>Lượt mua: <%= @course.buy_times %></ol>
+          <ol>Giá tiền: <%= @course.price %></ol>
+          <ol>
+            <div class="star-rating" data-score= <%= @avg_review %> ></div>
+            <em><%= @reviews.length %> lượt đánh giá</em>
+          </ol>
+        <% if logged_in? %>
+            <% if !@course.added_cart? current_user %>
+              <ol>
+                <%= button_to [:user, :user_courses, user_id: current_user.id,
+                  course_id: @course.id],
+                  class: "btn btn-primary" do %>
+                  <span>Cho vào giỏ hàng</span>
+                <% end %>
+              </ol>
+            <% else %>
+              <% if @course.paid_course? current_user %>
+                <ol>
+                  <%= link_to "Đã ở trong giỏ hàng", user_carts_path(current_user),
+                    class: "btn btn-danger" %>
+                </ol>
+              <% else %>
+                <ol>
+                  <%= link_to "Làm bài", "#", class: "btn btn-success" %>
+                </ol>
+              <% end %>
+            <% end %>
+        <% else %>
+          <ol>
+            <%= link_to "Đăng nhập", login_path %> để thêm vào giỏ hàng
+          </ol>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <p align="justify">
-    <% if !@course.added_cart? current_user %>
-      <%= button_to [:user, :user_courses, user_id: current_user.id,
-        course_id: @course.id],
-        class: "btn btn-primary" do %>
-        <span>Cho vào giỏ hàng</span>
-      <% end %>
-    <% else %>
-      <% if course.paid_course? current_user %>
-        <%= link_to "Đã ở trong giỏ hàng", user_carts_path(current_user),
-          class: "btn btn-danger" %>
-      <% else %>
-        <%= link_to "Làm bài", "#", class: "btn btn-success" %>
-      <% end %>
-    <% end %>
-  </p>
+  <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">...</div>
+  <div class="tab-pane fade" id="rate" role="tabpanel" aria-labelledby="rate-tab">
+    <div class="card">
+      <div class="card-body">
+        <%= render "reviews/review" %>
+      <div class="card-footer bg-primary">
+        <% if !logged_in? %>
+          <p>
+            <%= link_to "Đăng nhập", login_path %> để viết đánh giá
+          </p>
+        <% else %>
+          <% if @course.user_courses.had_review(current_user).empty? %>
+            <% if @course.reviews.where(user_id: current_user.id).empty? %>
+              <%= link_to "Đánh giá về khóa học", new_course_review_path(@course) %>
+            <% else %>
+              <p>Bạn đã viết đánh giá cho khóa học này!</p>
+            <% end %>
+          <% else %>
+            Bạn cần thanh toán trước khi viết đánh giá
+          <% end %>
+        <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
+

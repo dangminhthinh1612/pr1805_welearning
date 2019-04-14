@@ -1,7 +1,8 @@
 class Course < ApplicationRecord
   has_many :lessons, dependent: :destroy
-  has_many :user_courses, class_name: UserCourse.name
+  has_many :user_courses
   has_many :users, through: :user_courses
+  has_many :reviews
 
   belongs_to :category
 
@@ -36,5 +37,9 @@ class Course < ApplicationRecord
 
   def paid_course? user
     user_courses.unpaid.pluck(:user_id).include? (user.id)
+  end
+
+  def avg_rate
+    rate = reviews&.average(:rate)&.round(2) || 0
   end
 end

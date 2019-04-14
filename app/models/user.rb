@@ -1,9 +1,10 @@
 class User < ApplicationRecord
-  has_many :user_courses, class_name: UserCourse.name
+  has_many :user_courses
   has_many :courses, through: :user_courses
-  has_many :carts, class_name: Cart.name
+  has_many :carts
   has_many :courses, through: :carts
   has_many :messages
+  has_many :reviews
 
   attr_accessor :remember_token, :activation_token, :reset_token
 

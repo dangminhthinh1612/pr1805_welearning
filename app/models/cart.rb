@@ -1,5 +1,5 @@
 class Cart < ApplicationRecord
-  belongs_to :user, class_name: User.name
+  belongs_to :user
   has_many :user_courses
   has_many :courses, through: :user_courses
 

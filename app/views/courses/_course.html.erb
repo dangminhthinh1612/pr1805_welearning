@@ -1,7 +1,7 @@
 <tbody>
   <tr>
     <td><%= course.name %></td>
-    <td><%= course.rate %></td>
+    <td><div class="star-rating" data-score= <%= course.avg_rate %> ></div></td>
     <td><%= course.price %></td>
     <td><%= course.buy_times %></td>
     <td><%= link_to course_path(course) do %>
