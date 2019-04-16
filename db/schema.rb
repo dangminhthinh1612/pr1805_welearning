@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190405130213) do
+ActiveRecord::Schema.define(version: 20190414083946) do
 
   create_table "answers", force: :cascade do |t|
     t.string "answer_content"
@@ -77,6 +77,14 @@ ActiveRecord::Schema.define(version: 20190405130213) do
     t.datetime "updated_at", null: false
     t.index ["course_id", "created_at"], name: "index_lessons_on_course_id_and_created_at"
     t.index ["course_id"], name: "index_lessons_on_course_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|

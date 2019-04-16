@@ -1,0 +1,4 @@
+<%= form_for :message do |f| %>
+  <%= f.text_area :content, placeholder: "Type some thing...", class: "form-control" %>
+  <%= f.submit "Send", class: "btn btn-primary" %>
+<% end %>
