@@ -1,11 +1,12 @@
 <% provide :title, "Giỏ hàng" %>
 <h2 align="center">Giỏ hàng</h2>
 
-<% if @carts.where(paid: false).blank? %>
-  <i class="far fa-frown-open d-flex justify-content-center"></i>
-  <%= link_to courses_path, class: "btn btn-success btn-lg btn-block" do %>
-    <i class="fas fa-cart-plus"></i>
-    <span>Shopping Now!</span>
+<% if current_user.user_courses.unpaid.empty? %>
+  <i class="far fa-angry d-flex justify-content-around"></i>
+  <h2 align="center">Quay lại mua hàng đi!</h2>
+  <%= link_to courses_path, class: "btn btn-danger d-flex justify-content-center" do %>
+    <span>Chạy ngay đi!</span>
+    <i class="fas fa-running ml-2 mt-1"></i>
   <% end %>
 <% else %>
   <%= render "cart" %>

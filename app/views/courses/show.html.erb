@@ -11,10 +11,19 @@
       Đánh giá: <%= @course.rate %> </p><br>
   </div>
   <p align="justify">
-    <% if current_user.courses.ids.include? course.id %>
-      <%= link_to "Đã ở trong giỏ hàng", user_carts_path(current_user), class: "btn btn-primary" %>
+    <% if !@course.added_cart? current_user %>
+      <%= button_to [:user, :user_courses, user_id: current_user.id,
+        course_id: @course.id],
+        class: "btn btn-primary" do %>
+        <span>Cho vào giỏ hàng</span>
+      <% end %>
     <% else %>
-      <%= link_to "Cho vào giỏ hàng", user_carts_path(current_user), method: :post, class: "btn btn-primary" %>
+      <% if course.paid_course? current_user %>
+        <%= link_to "Đã ở trong giỏ hàng", user_carts_path(current_user),
+          class: "btn btn-danger" %>
+      <% else %>
+        <%= link_to "Làm bài", "#", class: "btn btn-success" %>
+      <% end %>
     <% end %>
   </p>
 </div>

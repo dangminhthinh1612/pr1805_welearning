@@ -2,7 +2,7 @@ class CreateCourses < ActiveRecord::Migration[5.1]
   def change
     create_table :courses do |t|
       t.string :name
-      t.integer :buy_times
+      t.integer :buy_times, default: 0
       t.float :rate
       t.integer :price
       t.text :description

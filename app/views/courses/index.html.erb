@@ -1,15 +1,16 @@
 <% provide :title, "Quản lý khóa học" %>
-<table width="100%" align="center" class="table table-hover">
+
+<table id="myTable" width="100%" align="center" class="table table-hover">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Tên khóa học</th>
-      <th>Phân loại</th>
-      <th>Đánh giá</th>
-      <th>Giá tiền</th>
-      <th>Lượt mua</th>
+      <th onclick="sortTable(0)">Tên khóa học</th>
+      <th onclick="sortTable(1)">Đánh giá</th>
+      <th onclick="sortTable(2)">Giá tiền</th>
+      <th onclick="sortTable(3)">Lượt mua</th>
       <th>Chi tiết</th>
-      <th>Mua ngay</th>
+      <% if logged_in? %>
+        <th>Mua ngay</th>
+      <% end %>
     </tr>
     </thead>
     <ul class="courses">
