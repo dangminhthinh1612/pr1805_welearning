@@ -6,7 +6,11 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find_by id: params[:id]
+    @reviews = @course.reviews.paginate page: params[:page], per_page: 5
+    @avg_review = @course.avg_rate
   end
+
+  private
 
   def course_params
     params(:course).require.permit :name, :description, :price, :picture

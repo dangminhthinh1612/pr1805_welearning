@@ -1,0 +1,21 @@
+  <% if @reviews.any? %>
+    <% @reviews.each do |review| %>
+    <div class="reviews">
+      <div class="media">
+        <div class="media-body" style="background-color: #e6e6ff;" >
+          <p>
+            <strong><%= review.user.user_name %></strong>
+            <div class="star-rating" data-score= <%= review.rate %>></div>
+          </p>
+          <p>
+            <%= review.comment %>
+          </p>
+        </div>
+      </div>
+      <br>
+    </div>
+    <% end %>
+    <%= will_paginate(@reviews,
+      :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,
+      class: "mt-2 mr-2 pagination-sm d-flex justify-content-end")%>
+  <% end %>

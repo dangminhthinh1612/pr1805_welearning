@@ -1,0 +1,15 @@
+<div class="card border-primary col-md-8 offset-lg-2">
+  <div class="card-header">Viết đánh giá</div>
+  <%= form_for @review, url: course_reviews_path do |f| %>
+    <%= render "shared/error_messages", object: f.object %>
+    <div class="card-body text-primary">
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <h5 class="card-title"><%= f.label :rate %></h5>
+      <div id="star-rating"></div>
+      <h5 class="card-title"><%= f.label :comment, "Nhận xét" %></h5>
+      <%= f.text_area :comment, class: "form-control" %>
+      <br>
+      <%= f.submit "Đánh giá", class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
+</div>
