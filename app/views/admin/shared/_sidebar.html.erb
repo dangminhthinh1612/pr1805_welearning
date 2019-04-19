@@ -40,12 +40,29 @@
     </div>
   </li>
 
+  <!-- Nav Item - Chat Collapse Menu -->
+  <li class="nav-item">
+    <%= link_to "#", class: "nav-link collapsed",
+    data: { toggle: :collapse, target: "#collapseChat" },
+    aria: { expanded: true, controls: :collapseChat } do %>
+      <i class="fas fa-comments"></i>
+      <span>Chat</span>
+    <% end %>
+    <div id="collapseChat" class="collapse" aria-labelledby="headingChat" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <%= link_to "Phòng chat", admin_chatrooms_path, class: "collapse-item" %>
+        <%= link_to "Tạo phòng mới", "#", class: "collapse-item" %>
+        <%= link_to "Khác", "#", class: "collapse-item" %>
+      </div>
+    </div>
+  </li>
+
   <!-- Nav Item - Utilities Collapse Menu -->
   <li class="nav-item">
     <%= link_to "#", class: "nav-link collapsed",
     data: { toggle: :collapse, target: "#collapseUtilities" },
     aria: { expanded: true, controls: :collapseUtilities } do %>
-      <i class="fas fa-users"></i>
+      <i class="fas fa-book"></i>
       <span>Khóa học</span>
     <% end %>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">

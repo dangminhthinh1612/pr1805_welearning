@@ -1,0 +1,34 @@
+<div id= "right-chat-room" class="col-lg-2">
+  <h4>Bộ phận hỗ trợ</h4>
+  <% if Chatroom.all.where(user_id: current_user.id).empty? %>
+    <%= button_to @chatroom, method: :post,
+      params:{ chatroom: { name: current_user.user_name, user_id: current_user.id, support: false }},
+      class: "btn btn-primary" do %>
+      Chat với admin
+    <% end %>
+  <% else %>
+    <% if current_user.chatrooms.admin_support.empty? %>
+      <%= button_to [:chatroom, :chatroom_users,
+        chatroom_id: (Chatroom.all.where(user_id: current_user.id).pluck(:id))], method: :post,
+        class: "btn btn-success" do %>
+        Kết nối
+      <% end %>
+    <% else %>
+      <%= link_to chatroom_path(current_user.admin_room), class: "btn btn-success" do %>
+        Admin
+      <% end %>
+    <% end %>
+  <% end %>
+  <h4>Phòng chat
+    <%= link_to chatrooms_path do %>
+      <i class="fas fa-fast-backward float-right"></i>
+    <% end %>
+  </h4>
+  <% @chatrooms.each do |chatroom| %>
+    <% if chatroom.chatroom_users.where(user_id: current_user).present? && chatroom.support %>
+      <%= link_to chatroom_path(chatroom), class: "btn btn-outline-info" do %>
+        <%= chatroom.name %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

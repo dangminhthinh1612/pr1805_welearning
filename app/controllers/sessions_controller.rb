@@ -1,13 +1,18 @@
 class SessionsController < ApplicationController
 
-  def new; end
+  def new
+    if logged_in?
+      flash[:danger] = "Logout before login, please!."
+      redirect_back_or current_user
+    end
+  end
 
   def create
     user = User.find_by email: params[:session][:email].downcase
     if user && user.authenticate(params[:session][:password])
       if user.activated?
         log_in user
-        params[:session][:remember_me] == "1" ? remember(user) : forget(user)
+        remember(user) if params[:session][:remember_me] == "1"
         redirect_back_or user
       else
         message  = "Account not activated. "

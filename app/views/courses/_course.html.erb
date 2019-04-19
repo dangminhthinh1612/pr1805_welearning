@@ -2,7 +2,7 @@
   <tr>
     <td><%= course.name %></td>
     <td><div class="star-rating" data-score= <%= course.avg_rate %> ></div></td>
-    <td><%= course.price %></td>
+    <td><%= number_to_currency(course.price, unit: "đ",precision: 0, format: "%n %u") %></td>
     <td><%= course.buy_times %></td>
     <td><%= link_to course_path(course) do %>
       <i class="fas fa-info-circle text-primary"></i>

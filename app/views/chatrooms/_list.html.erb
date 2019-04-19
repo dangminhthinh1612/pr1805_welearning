@@ -1,0 +1,21 @@
+<div class="col-lg-10 border-right border-primary">
+  <% @chatrooms.each do |chatroom| %>
+    <ul>
+      <div class="d-flex justify-content-between">
+        <% if chatroom.support %>
+          <%= chatroom.name %>
+          <% if chatroom.check_room(current_user) %>
+            <%= link_to "Thoát", chatroom_chatroom_user_path(chatroom.id, id:
+              chatroom.chatroom_user(current_user)),
+              method: :delete, class: "btn btn-danger" %>
+          <% else %>
+            <%= button_to [:chatroom, :chatroom_users, chatroom_id: chatroom.id],
+              method: :post, class: "btn btn-success" do %>
+              Kết nối
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </ul>
+  <% end %>
+</div>

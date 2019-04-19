@@ -1,6 +1,7 @@
 module SessionsHelper
 
   def log_in user
+    cookies.permanent.signed[:user_id] = user.id
     session[:user_id] = user.id
   end
 
@@ -13,7 +14,7 @@ module SessionsHelper
   def current_user
     if user_id = session[:user_id]
       @current_user ||= User.find_by id: user_id
-    elsif user_id = cookies.signed[:user_id]
+    elsif (user_id = cookies.signed[:user_id]) && cookies[:remember_token].present?
       user = User.find_by id: user_id
       if user && user.authenticated?(:remember, cookies[:remember_token])
         log_in user
@@ -49,5 +50,24 @@ module SessionsHelper
 
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
+  end
+
+  private
+
+  def verify_admin
+    if !logged_in?
+      flash[:danger] = "Đăng nhập để truy cập tính năng"
+      redirect_to login_path
+    elsif !current_user.admin
+      flash[:warning] = "Bạn không thể truy cập tính năng này"
+      redirect_to root_path
+    end
+  end
+
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
   end
 end
