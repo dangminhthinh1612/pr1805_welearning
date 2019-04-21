@@ -1,15 +1,24 @@
-<% provide :title, "Chỉnh sửa bài giảng" %>
+<% provide :title, "Thay đổi bài giảng" %>
+<% provide :button, "Thay đổi bài giảng" %>
 
-<h1 align="center">Chỉnh sửa bài giảng</h1>
+<h1 align="center">Thiết kế bài giảng</h1>
 <div class="row d-flex justify-content-center">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for [:admin, :sname, @lesson] do |f| %>
+    <%= form_for @lesson, url: admin_sname_lesson_path do |f| %>
       <%= render "shared/error_messages", object: f.object %>
       <%= f.label :lesson_title, "Tên bài giảng" %>
       <%= f.text_field :lesson_title, class: "form-control mb-2" %>
-      <%= f.label :lesson_content, "Nội dung" %>
-      <%= f.text_area :lesson_content, class: "form-control mb-2" %>      
-      <%= f.submit "Cập nhật bài giảng",
+      <%= f.hidden_field :hiden_tab, value: 2 %>
+      <% if @lesson.contents.present?%>
+        <%= f.fields_for :contents do |ff| %>
+          <%= render "admin/lessons/edit_content_fields", f: ff, type: ff.object.content_type %>
+        <% end %>
+      <% end %>
+      <div class="btn-group-add-field">
+        <%= link_to_add_fields "Add content", f, :contents, "text" %>
+        <%= link_to_add_fields "Add attachments", f, :contents, "file" %>
+      </div>
+      <%= f.submit "Thay đổi bài giảng",
         class: "mt-3 btn btn-success btn-sm btn-block" %>
     <% end %>
   </div>
