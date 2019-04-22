@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190414173426) do
+ActiveRecord::Schema.define(version: 20190422120749) do
 
   create_table "answers", force: :cascade do |t|
     t.string "answer_content"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 20190414173426) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contents", force: :cascade do |t|
+    t.integer "lesson_id"
+    t.string "text"
+    t.integer "content_type", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "file_name"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.integer "buy_times", default: 0
@@ -71,7 +80,6 @@ ActiveRecord::Schema.define(version: 20190414173426) do
   create_table "lessons", force: :cascade do |t|
     t.string "lesson_title"
     t.string "lesson_status"
-    t.string "lesson_content"
     t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

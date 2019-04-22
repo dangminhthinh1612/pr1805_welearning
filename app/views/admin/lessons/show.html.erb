@@ -1,9 +1,25 @@
-<h2 align="center">
-  <%= @lesson.lesson_title %>
-</h2>
-<h3 align="right">
-  Trạng thái: <%= @lesson.lesson_status %>
-</h3>
-<p>
-  <%= @lesson.lesson_content %>
-</p>
+<%= provide :tittle,@lesson.course.name + ":" + @lesson.lesson_title %>
+<h1 align="center"><%= @lesson.lesson_title %></h1>
+
+  <div class="lesson-contents">
+    <% @lesson.contents.each do |content| %>
+      <% if content.text?%>
+        <div class="content-text">
+          <%= simple_format content.text %> <br>
+        </div>
+      <% else %>
+        <div class="content-file">
+          <% if content.file_name.content_type.start_with? "image"%>
+              <%= image_tag content.file_name.image.url, :size => "720x460" %> <br>
+          <% else %>
+              <%= video_tag content.file_name_url.to_s, :size => "720x460", controls: true %> <br>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div align="center">
+    <%= link_to "Thay đổi bài giảng", edit_admin_sname_lesson_path(@lesson),
+      class: "btn btn-warning btn-sm" %>
+  </div>
+

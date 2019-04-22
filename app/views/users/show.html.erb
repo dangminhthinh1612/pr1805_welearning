@@ -3,7 +3,7 @@
 
 <div class="col-md-offset-3">
   <div class="row-md-6 row-md-offset-3">
-    <%=  image_tag current_user.picture %><br>
+    <%=  image_tag current_user.picture_url || "" %><br>
     <p align="justify">Họ và tên: <%=  current_user.user_name %><br>
     Thẻ căn cước: <%= current_user.id_card %><br>
     Email: <%=  current_user.email %><br>

@@ -1,0 +1,26 @@
+<fieldset>
+  <% if type == "file" %>
+    <div class="form-inline">
+      <% if f.object.file_name.content_type %>
+        <% if f.object.file_name.content_type.start_with? "image"%>
+          <%= image_tag f.object.file_name.image.url %>
+        <% else %>
+          <%= video_tag f.object.file_name_url, controls: true %>
+        <% end %>
+        <%= f.hidden_field :_destroy %>
+      <% else %>
+        <%= f.file_field :file_name %>
+        <%= f.hidden_field :content_type, value: "file" %>
+        <%= f.hidden_field :_destroy %>
+      <% end %>
+      <%= link_to "Remove", "#", class: "remove_contents" %>
+    </div>
+  <% else %>
+    <div class="form-inline">
+      <%= f.text_area :text, cols: 80, rows: 5, class: "form-control mb-2" %>
+      <%= f.hidden_field :_destroy %> <br>
+      <%= link_to "Remove", "#", class: "remove_contents" %>
+    </div>
+  <% end %>
+  <br>
+</fieldset>

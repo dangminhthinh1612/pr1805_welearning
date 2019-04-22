@@ -1,5 +1,5 @@
-User.create!(user_name:  "UserZero",
-             email: "userzero@email.com",
+User.create!(user_name:  "ngoc1",
+             email: "ngoc1@email.com",
              password:              "123456",
              password_confirmation: "123456",
              admin: true,
@@ -36,7 +36,5 @@ end
 courses = Course.order(:created_at).take(8)
 15.times do
   lesson_title = Faker::Educator.course_name
-  lesson_content = Faker::Lorem.sentence(5)
-  courses.each {|course| course.lessons.create!(lesson_title: lesson_title,
-    lesson_content: lesson_content)}
+  courses.each {|course| course.lessons.create!(lesson_title: lesson_title)}
 end
