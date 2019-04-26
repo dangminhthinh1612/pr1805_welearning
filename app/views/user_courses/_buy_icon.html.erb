@@ -1,0 +1,9 @@
+<% if course.paid_course? user %>
+    <%= link_to user_carts_path user, class: "btn btn-link" do %>
+      <i class="fas fa-file-invoice-dollar text-warning"></i>
+    <% end %>
+<% else %>
+    <button type="none", class="btn btn-link">
+      <i class='fas fa-check-circle text-danger'></i>
+    </button>
+<% end %>

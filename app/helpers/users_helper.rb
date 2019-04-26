@@ -1,5 +1,9 @@
 module UsersHelper
 
+  def buy_icon_id user, course
+    "item_" + user.id.to_s + "_" + course.id.to_s
+  end
+
   def gravatar_for user, options = { size: 80 }
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
     size = options[:size]
