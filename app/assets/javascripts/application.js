@@ -11,6 +11,15 @@ $('#micropost_picture').bind('change', function() {
   }
 });
 
+//Disable button once clicked
+$(document).on('turbolinks:load', function(){
+  $('#btnDisable').click(function (event) {
+    if($(this).hasClass('disabled')) {
+      $(this).prop('disabled', true);
+    }
+    $(this).addClass('disabled');
+  });
+})
 // Sort course table
 
 function sortTable(n) {

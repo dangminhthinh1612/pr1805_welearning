@@ -1,8 +1,12 @@
 class UserCoursesController < ApplicationController
+  before_action :logged_in_user
 
   def create
     @user_course = current_user.user_courses.create course_id: params[:course_id]
-    redirect_to courses_path
+    respond_to do |format|
+      format.html{ redirect_to courses_path}
+      format.js
+    end
   end
 
   def destroy

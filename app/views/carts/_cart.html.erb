@@ -7,22 +7,22 @@
       <th>Bỏ</th>
     </tr>
   </thead>
-  <ul class="user_courses">
+  <tbody class="user_courses">
     <% @user_courses.each do |user_course| %>
-      <tbody>
+      <tr>
         <% if user_course.in_cart? %>
           <td><%= user_course.course.name %></td>
           <td><%= user_course.course.price %></td>
           <td>
-            <%= link_to ucname_user_course_path(user_course), method: :delete do %>
+            <%= link_to ucname_user_course_path(user_course), method: :delete, id: "btnDisable" do %>
               <i class="fas fa-trash-alt text-dark"></i>
             <% end %>
           </td>
           <% @payment += user_course.course.price %>
         <% end %>
-      </tbody>
-    <% end %>
-  </ul>
+      </tr>
+  <% end %>
+  </tbody>
 </table>
 <hr>
 <div class="row d-flex justify-content-between">
