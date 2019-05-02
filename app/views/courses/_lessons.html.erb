@@ -1,0 +1,14 @@
+<table width="95%" align="center" class="table-hover">
+  <thead>
+    <tr>
+      <th>Bài giảng</th>
+      <th>Chi tiết</th>
+    </tr>
+  </thead>
+  <ol class="lessons">
+    <%= render @lessons %>
+  </ol>
+</table>
+  <%= will_paginate(@lessons,
+    :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,
+    class: "mt-2 mr-2 pagination-sm d-flex justify-content-end")%>

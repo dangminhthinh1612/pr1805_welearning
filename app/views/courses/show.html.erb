@@ -28,36 +28,55 @@
             <div class="star-rating" data-score= <%= @avg_review %> ></div>
             <em><%= @reviews.length %> lượt đánh giá</em>
           </ol>
-        <% if logged_in? %>
-            <% if !@course.added_cart? current_user %>
-              <ol>
-                <%= button_to [:user, :user_courses, user_id: current_user.id,
-                  course_id: @course.id],
-                  class: "btn btn-primary" do %>
-                  <span>Cho vào giỏ hàng</span>
-                <% end %>
-              </ol>
-            <% else %>
-              <% if @course.paid_course? current_user %>
+          <% if logged_in? %>
+              <% unless @course.added_cart? current_user %>
                 <ol>
-                  <%= link_to "Đã ở trong giỏ hàng", user_carts_path(current_user),
-                    class: "btn btn-danger" %>
+                  <%= button_to [:user, :user_courses, user_id: current_user.id,
+                    course_id: @course.id],
+                    class: "btn btn-primary" do %>
+                    <span>Cho vào giỏ hàng</span>
+                  <% end %>
                 </ol>
               <% else %>
-                <ol>
-                  <%= link_to "Làm bài", "#", class: "btn btn-success" %>
-                </ol>
+                <% if @course.unpaid_course? current_user %>
+                  <ol>
+                    <%= link_to "Đã ở trong giỏ hàng", user_carts_path(current_user),
+                      class: "btn btn-danger" %>
+                  </ol>
+                <% else %>
+                  <ol>
+                    <%= link_to "Làm bài", "#", class: "btn btn-success" %>
+                  </ol>
+                <% end %>
               <% end %>
-            <% end %>
-        <% else %>
-          <ol>
-            <%= link_to "Đăng nhập", login_path %> để thêm vào giỏ hàng
-          </ol>
-        <% end %>
+          <% else %>
+            <ol>
+              <%= link_to "Đăng nhập", login_path %> để thêm vào giỏ hàng
+            </ol>
+          <% end %>
       </div>
     </div>
   </div>
-  <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">...</div>
+  <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+    <% if logged_in? %>
+      <% unless @course.added_cart? current_user %>
+        <div id=<%= buy_icon_id current_user, @course%> >
+          <%= button_to [:user, :user_courses,user_id: current_user.id,
+          course_id: @course.id], remote: true, class: "btn btn-link"  do %>
+          <i class="fas fa-cart-plus text-success"></i>
+          <% end %>
+        </div>
+      <% else %>
+        <% if @course.unpaid_course? current_user %>
+          <%= link_to user_carts_path(current_user), class: "btn btn-link" do %>
+            <i class="fas fa-file-invoice-dollar text-warning"></i>
+          <% end %>
+        <% else %>
+          <%= render "lessons" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
   <div class="tab-pane fade" id="rate" role="tabpanel" aria-labelledby="rate-tab">
     <div class="card">
       <div class="card-body">
@@ -68,14 +87,14 @@
             <%= link_to "Đăng nhập", login_path %> để viết đánh giá
           </p>
         <% else %>
-          <% if @course.user_courses.had_review(current_user).empty? %>
+          <% if @course.user_courses.had_review(current_user).empty? && (@course.added_cart? (current_user) || !@course.unpaid_course?(current_user)) %>
             <% if @course.reviews.where(user_id: current_user.id).empty? %>
               <%= link_to "Đánh giá về khóa học", new_course_review_path(@course) %>
             <% else %>
               <p>Bạn đã viết đánh giá cho khóa học này!</p>
             <% end %>
           <% else %>
-            Bạn cần thanh toán trước khi viết đánh giá
+            Bạn cần mua trước khi viết đánh giá
           <% end %>
         <% end %>
       </div>

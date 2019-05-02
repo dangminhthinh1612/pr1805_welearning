@@ -16,7 +16,7 @@
             <i class="fas fa-cart-plus text-success"></i>
           <% end %>
       <% else %>
-        <% if course.paid_course? current_user %>
+        <% if course.unpaid_course? current_user %>
             <%= link_to user_carts_path(current_user), class: "btn btn-link" do %>
               <i class="fas fa-file-invoice-dollar text-warning"></i>
             <% end %>

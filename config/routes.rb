@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :courses, only: [:index, :show] do
     resources :reviews, only: [:index, :create, :new]
   end
-  
+
   scope shallow_prefix: "ucname" do
     resources :users, except: :index do
       resources :user_courses, shallow: true
@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   resources :messages, only: [:create, :index], path: "chat"
+  resources :lessons
 
   namespace :admin do
     root "dashboards#index"
