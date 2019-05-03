@@ -11,6 +11,16 @@ class Admin::ChatroomsController < Admin::BaseController
     @messages = @chatroom.messages
   end
 
+  def create
+    @chatroom = Chatroom.new chatroom_params
+    if @chatroom.save
+      flash[:success] = "Tạo khóa học thành công!"
+      redirect_to admin_chatrooms_path
+    else
+      render :new
+    end
+  end
+
   private
 
   def chatroom_params

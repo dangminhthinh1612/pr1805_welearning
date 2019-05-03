@@ -1,9 +1,4 @@
 class Admin::MessagesController < Admin::BaseController
-  after_create :send_messages
-
-  def new
-    @message = current_user.messages.build
-  end
 
   def create
     @chatroom = Chatroom.find_by id: params[:chatroom_id]

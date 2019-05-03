@@ -5,7 +5,9 @@ class UserCourse < ApplicationRecord
   belongs_to :course
 
   scope :unpaid, -> { where cart_id:nil }
+  scope :paid, -> { where "cart_id NOT NULL" }
   scope :had_review, -> (u_user){ where cart_id: nil , user_id: u_user}
+
   def in_cart?
     cart_id.nil?
   end
