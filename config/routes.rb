@@ -27,8 +27,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :messages, only: [:create, :index], path: "chat"
   resources :lessons
+  resources :chatrooms do
+    resources :chatroom_users
+    resources :messages
+  end
+
+  mount ActionCable.server, at: "/cable"
 
   namespace :admin do
     root "dashboards#index"
@@ -40,5 +45,11 @@ Rails.application.routes.draw do
     end
     resources :searches, only: :index
     resources :users
+
+    scope shallow_prefix: "crname" do
+      resources :chatrooms do
+        resources :messages, shallow: true
+      end
+    end
   end
 end

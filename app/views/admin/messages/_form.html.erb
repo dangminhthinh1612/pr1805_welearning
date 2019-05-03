@@ -1,5 +1,5 @@
 <div class="message-input">
-  <%= form_for :message, url: chatroom_messages_path(@chatroom.id),
+  <%= form_for :message, url: admin_chatroom_messages_path(@chatroom.id), 
     method: :post, remote: true do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.text_area :content, placeholder: "Type some thing...", class: "form-control" %>

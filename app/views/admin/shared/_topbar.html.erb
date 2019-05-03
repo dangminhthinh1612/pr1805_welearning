@@ -6,7 +6,7 @@
   </button>
 
   <!-- Topbar Search -->
-  <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+  <div class="input-group">
     <%= form_tag admin_searches_path, method: :get do %>
       <%= text_field_tag :term %>
       <%= submit_tag "Search" %>

@@ -45,6 +45,24 @@ ActiveRecord::Schema.define(version: 20190422120749) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "chatroom_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "chatroom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_chatroom_users_on_chatroom_id"
+    t.index ["user_id"], name: "index_chatroom_users_on_user_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.boolean "support"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_chatrooms_on_user_id"
+  end
+
   create_table "contents", force: :cascade do |t|
     t.integer "lesson_id"
     t.string "text"
@@ -90,8 +108,10 @@ ActiveRecord::Schema.define(version: 20190422120749) do
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.integer "user_id"
+    t.integer "chatroom_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 

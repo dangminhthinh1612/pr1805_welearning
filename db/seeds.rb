@@ -33,8 +33,21 @@ end
                  category_id: tag,
                  price: price)
 end
+
 courses = Course.order(:created_at).take(8)
 15.times do
   lesson_title = Faker::Educator.course_name
   courses.each {|course| course.lessons.create!(lesson_title: lesson_title)}
+end
+
+10.times do |n|
+  courses.each {|course| 
+    course.update_attributes buy_times: rand(20..50),
+                             created_at: n.days.ago}
+end
+
+room = ["Toán", "Lý", "Hóa", "Anh", "Văn"]
+5.times do |n|
+  name = room[n]
+  Chatroom.create!(name: name, support: true)
 end

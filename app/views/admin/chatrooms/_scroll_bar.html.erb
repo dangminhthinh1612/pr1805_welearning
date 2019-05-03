@@ -1,0 +1,30 @@
+<div class="card flex-fill">
+  <div class="card-body">
+    <div class="rooms-list">
+      <% if @chatrooms.present? %>
+        <% @chatrooms.each do |chatroom|%>
+          <% unless chatroom.support %>
+            <%= link_to admin_chatroom_path(chatroom), class: "btn btn-success btn-block" do %>
+              <%= chatroom.name %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="card flex-fill">
+  <div class="card-body">
+    <div class="rooms-list">
+      <% if @chatrooms.present? %>
+        <% @chatrooms.each do |chatroom|%>
+          <% if chatroom.support %>
+            <%= link_to admin_chatroom_path(chatroom), class: "btn btn-primary btn-block" do %>
+              <%= chatroom.name %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

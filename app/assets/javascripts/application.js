@@ -1,9 +1,10 @@
-//= require admin/application
 //= require rails-ujs
 //= require turbolinks
 //= require jquery
 //= require bootstrap-sprockets
-//= require_tree .
+//= require_directory .
+//= require_self
+
 $('#micropost_picture').bind('change', function() {
   var size_in_megabytes = this.files[0].size/1024/1024;
   if (size_in_megabytes > 5) {
@@ -18,6 +19,19 @@ $(document).on('turbolinks:load', function(){
       $(this).prop('disabled', true);
     }
     $(this).addClass('disabled');
+  });
+
+  $("#star-rating").raty({
+    path: '/assets/',
+    scoreName: "review[rate]"
+  });
+
+  $(".star-rating").raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
   });
 })
 // Sort course table
@@ -81,18 +95,3 @@ $('#myTab a').on('click', function (e) {
  e.preventDefault();
  $(this).tab('show');
 });
-
-$(document).on("turbolinks:load", function(){
-  $("#star-rating").raty({
-    path: '/assets/',
-    scoreName: "review[rate]"
-  });
-
-  $(".star-rating").raty({
-    path: '/assets/',
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    }
-  });
-})

@@ -5,12 +5,14 @@ class User < ApplicationRecord
   has_many :courses, through: :carts
   has_many :messages
   has_many :reviews
+  has_many :chatroom_users
+  has_many :chatrooms, through: :chatroom_users
 
   attr_accessor :remember_token, :activation_token, :reset_token
 
   before_create :create_activation_digest
   before_save { self.email = email.downcase }
-  
+
   validates :user_name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -83,6 +85,10 @@ class User < ApplicationRecord
   #   return all unless term
   #     where("user_name LIKE :u_term OR email LIKE :u_term", u_term: "%#{term}%")
   # end
+
+  def admin_room
+    chatrooms.admin_support.ids
+  end
 
   private
   def create_activation_digest
