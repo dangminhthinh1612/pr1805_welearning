@@ -23,8 +23,9 @@ class User < ApplicationRecord
   mount_uploader :picture, PictureUploader
   validate  :picture_size
 
-  scope :search, ->(term){where("user_name LIKE :u_term OR email LIKE :u_term",
-    u_term: "%#{term}%")}
+  scope :search, ->(term){ where("user_name LIKE :u_term OR email LIKE :u_term",
+    u_term: "%#{term}%") }
+  scope :sign_today, -> { where "date(created_at) = ?", Date.today }
 
   class << self
 

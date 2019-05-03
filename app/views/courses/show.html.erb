@@ -23,7 +23,9 @@
         <%= image_tag @course.picture %>
           <ol>Mô tả: <%= @course.description %></ol>
           <ol>Lượt mua: <%= @course.buy_times %></ol>
-          <ol>Giá tiền: <%= @course.price %></ol>
+          <ol>
+            Giá tiền: <%= number_to_currency(@course.price, unit: "đ",precision: 0, format: "%n %u") %>
+          </ol>
           <ol>
             <div class="star-rating" data-score= <%= @avg_review %> ></div>
             <em><%= @reviews.length %> lượt đánh giá</em>
@@ -72,7 +74,9 @@
         <% else %>
           <% if @course.user_courses.had_review(current_user).empty? && (@course.added_cart? (current_user) || !@course.unpaid_course?(current_user)) %>
             <% if @course.reviews.where(user_id: current_user.id).empty? %>
-              <%= link_to "Đánh giá về khóa học", new_course_review_path(@course) %>
+              <%= link_to new_course_review_path(@course), class: "text-light" do %>
+                <span>Đánh giá về khóa học</span>
+              <% end %>
             <% else %>
               <p>Bạn đã viết đánh giá cho khóa học này!</p>
             <% end %>
