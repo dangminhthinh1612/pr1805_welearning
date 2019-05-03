@@ -6,8 +6,13 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find_by id: params[:id]
-    @reviews = @course.reviews.paginate page: params[:page], per_page: 5
-    @avg_review = @course.avg_rate
+    if @course
+      @reviews = @course.reviews.paginate page: params[:page], per_page: 5
+      @avg_review = @course.avg_rate
+      @lessons = @course.lessons.paginate page: params[:page], per_page: 15
+    else
+      redirect_to root_path
+    end
   end
 
   private

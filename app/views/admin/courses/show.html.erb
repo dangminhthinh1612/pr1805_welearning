@@ -19,12 +19,9 @@
       <th>Xóa</th>
     </tr>
   </thead>
-  <% if @course.lessons.present? %>
-      <ol class="lessons">
-        <%= render @lessons %>
-      </ol>
-  <% end %>
-
+  <ol class="lessons">
+    <%= render @lessons %>
+  </ol>
 </table>
   <%= will_paginate(@lessons,
     :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,

@@ -35,7 +35,7 @@ class Course < ApplicationRecord
     users.ids.include? (user.id)
   end
 
-  def paid_course? user
+  def unpaid_course? user
     user_courses.unpaid.pluck(:user_id).include? (user.id)
   end
 

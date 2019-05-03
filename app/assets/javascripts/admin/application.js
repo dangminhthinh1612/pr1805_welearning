@@ -7,7 +7,6 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
-
 $(document).on('turbolinks:load', function(){
   // Toggle the side navigation
   $('#sidebarToggle, #sidebarToggleTop').on('click', function(e) {
