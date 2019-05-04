@@ -6,7 +6,7 @@
           <%= chatroom.name %>
           <% if chatroom.check_room(current_user) %>
             <%= link_to "Thoát", chatroom_chatroom_user_path(chatroom.id, id:
-              chatroom.chatroom_user(current_user)),
+              chatroom.chatroom_users.where(user_id: current_user).ids),
               method: :delete, class: "btn btn-danger" %>
           <% else %>
             <%= button_to [:chatroom, :chatroom_users, chatroom_id: chatroom.id],

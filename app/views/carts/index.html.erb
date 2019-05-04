@@ -1,13 +1,17 @@
 <% provide :title, "Giỏ hàng" %>
-<h2 align="center">Giỏ hàng</h2>
-
-<% if current_user.user_courses.unpaid.empty? %>
-  <i class="far fa-angry d-flex justify-content-around"></i>
-  <h2 align="center">Quay lại mua hàng đi!</h2>
-  <%= link_to courses_path, class: "btn btn-danger d-flex justify-content-center" do %>
-    <span>Chạy ngay đi!</span>
-    <i class="fas fa-running ml-2 mt-1"></i>
+<div class="col-lg-9 border-right">
+  <h3 align="center">Giỏ hàng</h3>
+  <% if current_user.user_courses.unpaid.empty? %>
+    <i class="far fa-angry d-flex justify-content-around"></i>
+    <h2 align="center">Quay lại mua hàng đi!</h2>
+    <%= link_to courses_path, class: "btn btn-danger d-flex justify-content-center" do %>
+      <span>Chạy ngay đi!</span>
+      <i class="fas fa-running ml-2 mt-1"></i>
+    <% end %>
+  <% else %>
+    <%= render "cart" %>
   <% end %>
-<% else %>
-  <%= render "cart" %>
-<% end %>
+</div>
+<div class="col-lg-3">
+  <%= render "history" %>
+</div>

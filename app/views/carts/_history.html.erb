@@ -1,0 +1,29 @@
+<h3 align="center">Lịch sử mua hàng</h3>
+<div class="card">
+  <div class="card-body">
+    <% if current_user.carts.empty? %>
+      <p>Lịch sử mua hàng của bạn sẽ hiển thị tại đây</p>
+    <% else %>
+      <table align="center" class="table table-hover" style="margin-bottom: 0px;">
+        <thead>
+          <tr>
+            <th>Thời gian</th>
+            <th>Chi tiết</th>
+          </tr>
+        </thead>
+        <tbody class="carts">
+          <% @carts.each do |cart| %>
+            <tr>
+              <td><%= cart.updated_at.localtime.strftime("%H:%M - %d/%m/%Y") %></td>
+              <td align="center">
+                <%= link_to ucname_cart_path(cart) do %>
+                  <i class="fas fa-info-circle text-primary"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

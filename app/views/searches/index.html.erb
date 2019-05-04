@@ -15,8 +15,10 @@
     <h2 align="center">Tìm kiếm</h2>
     <%= form_for :search, url: searches_path, method: :get do |f| %>
       <%= f.label :title, "Tên khóa học" %>
-      <%= f.text_field :title, class: "form-control" %>
-      <div class="row">
+      <%= f.text_field :title, value: (params[:search] ? 
+        (params[:search][:title].empty? ? "Khóa học" : params[:search][:title]) 
+        : "Khóa học"), class: "form-control"%>
+      <div class="d-lg-flex">
         <div class="col-sm">
           <%= f.label :price_lt, "Giá thấp hơn" %>
           <%= f.text_field :price_lt, class: "form-control" %>
@@ -26,11 +28,10 @@
           <%= f.text_field :price_gt, class: "form-control" %>
         </div>
       </div>
-
       <%= f.label :category_ids, "Thư viện" %>
       <%= f.collection_check_boxes :category_ids, Category.all, :id, :tag do |b|%>
-        <%= b.label class:"d-block form-check-label" do %>
-          <%= b.check_box class:"form-check-input"%>
+        <%= b.label class: "d-block form-check-label" do %>
+          <%= b.check_box class: "form-check-input"%>
           <%= b.text %>
         <% end%>
       <% end %>
