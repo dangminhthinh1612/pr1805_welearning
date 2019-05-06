@@ -7,6 +7,7 @@ class UserCoursesController < ApplicationController
       redirect_to courses_path
     else
       @user_course = current_user.user_courses.create course_id: params[:course_id]
+      @href_path = user_carts_path
       respond_to do |format|
         format.html{ redirect_to courses_path}
         format.js

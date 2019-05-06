@@ -1,0 +1,16 @@
+<tbody>
+  <tr>
+    <td><%= lesson.lesson_title %></td>
+    <% if demo %>
+      <td><%= link_to "Chi tiết", lesson_path(lesson),
+        class: "btn btn-info btn-sm" %>
+      </td>
+    <% else %>
+      <% if logged_in? && (@course.added_cart? current_user) && (!@course.unpaid_course? current_user) %>
+        <td><%= link_to "Chi tiết", lesson_path(lesson),
+          class: "btn btn-info btn-sm" %>
+        </td>
+      <% end %>
+    <% end %>
+  </tr>
+</tbody>
