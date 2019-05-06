@@ -9,24 +9,24 @@
       <% end %>
     </td>
     <% if logged_in? %>
-    <td id=<%= buy_icon_id current_user, course %>>
-      <% if !course.added_cart? current_user %>
+      <td id=<%= buy_icon_id current_user, course %>>
+        <% if !course.added_cart? current_user %>
           <%= button_to [:user, :user_courses,user_id: current_user.id,
             course_id: course.id], remote: true, class: "btn btn-link"  do %>
             <i class="fas fa-cart-plus text-success"></i>
           <% end %>
-      <% else %>
-        <% if course.unpaid_course? current_user %>
+        <% else %>
+          <% if course.unpaid_course? current_user %>
             <%= link_to user_carts_path(current_user), class: "btn btn-link" do %>
               <i class="fas fa-file-invoice-dollar text-warning"></i>
             <% end %>
-        <% else %>
+          <% else %>
             <button type="none", class="btn btn-link">
               <i class='fas fa-check-circle text-danger'></i>
             </button>
+          <% end %>
         <% end %>
-      <% end %>
-    </td>
+      </td>
     <% end %>
   </tr>
 </tbody>

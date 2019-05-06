@@ -20,10 +20,4 @@ class Admin::UsersController < Admin::BaseController
       end
     end
   end
-
-  def destroy
-    User.find_by(id: params[:id]).destroy
-    flash[:danger] = "Xóa tài khoản thành công!"
-    redirect_to admin_users_path
-  end
 end
