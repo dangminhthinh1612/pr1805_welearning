@@ -1,0 +1,41 @@
+<% @payment = 0 %>
+<div class="col-lg-6 offset-lg-3">
+  <h3 align="center">Giao dịch ngày <%= @cart.updated_at.strftime("%d/%m/%Y") %></h3>
+  <div class="card">
+    <div class="card-body">
+      <table align="center" class="table table-hover" style="margin-bottom: 0px;">
+        <thead>
+          <tr>
+            <th>Sản phẩm</th>
+            <th>Giá thành</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart.user_courses.each do |user_course| %>
+            <tr>
+              <td><%= user_course.course.name %></td>
+              <td>
+                <%= number_to_currency(user_course.course.price, 
+                  unit: "đ",precision: 0, format: "%n %u") %>
+              </td>
+            </tr>
+            <% @payment += user_course.course.price %>
+          <% end %>
+        </tbody>
+      </table>
+      <hr>
+      <div class="row">
+        <div class="col border-right ml-3">
+          <p><strong>Số lượng: </strong><%= @cart.user_courses.count %></p>
+          <p>
+            <strong>Thành tiền: </strong><%= number_to_currency(@payment, unit: "đ", 
+              precision: 0, format: "%n %u") %>
+          </p>
+        </div>
+        <div class="col align-self-center d-flex justify-content-around">
+          <p><i class="fas fa-check text-success"></i> Đã thanh toán</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

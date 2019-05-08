@@ -1,8 +1,8 @@
 <% provide :title, "Edit user" %>
 
 <div class="row">
-  <div class="col-md-8 offset-md-4">
-    <h1>Cập nhật thông tin cá nhân</h1>
+  <div class="col-md-8 offset-md-2">
+    <h1 align="center">Cập nhật</h1>
     <%= form_for @user do |f| %>
       <%= render "shared/error_messages", object: f.object %>
 
@@ -34,7 +34,7 @@
         <% end %>
       </span>
       <br>
-      <%= f.submit "Lưu thay đổi", class: "btn btn-primary" %>
+      <%= f.submit "Lưu cập nhật", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

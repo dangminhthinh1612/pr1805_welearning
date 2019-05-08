@@ -1,35 +1,44 @@
 <% @payment = 0 %>
-<table width="100%" align="center" class="table table-hover">
-  <thead>
-    <tr>
-      <th>Tên khóa học</th>
-      <th>Giá tiền</th>
-      <th>Bỏ</th>
-    </tr>
-  </thead>
-  <tbody class="user_courses">
-    <% @user_courses.each do |user_course| %>
-      <tr>
-        <% if user_course.in_cart? %>
-          <td><%= user_course.course.name %></td>
-          <td><%= user_course.course.price %></td>
-          <td>
-            <%= link_to ucname_user_course_path(user_course), method: :delete, id: "btnDisable" do %>
-              <i class="fas fa-trash-alt text-dark"></i>
+<div class="card">
+  <div class="card-body">
+    <table width="100%" align="center" class="table table-hover">
+      <thead>
+        <tr>
+          <th>Tên khóa học</th>
+          <th>Giá tiền</th>
+          <th>Bỏ</th>
+        </tr>
+      </thead>
+      <tbody class="user_courses">
+        <% @user_courses.each do |user_course| %>
+          <tr>
+            <% if user_course.in_cart? %>
+              <td><%= user_course.course.name %></td>
+              <td>
+                <%= number_to_currency(user_course.course.price, 
+                  unit: "đ",precision: 0, format: "%n %u") %>
+              </td>
+              <td>
+                <%= link_to ucname_user_course_path(user_course), method: :delete, id: "btnDisable" do %>
+                  <i class="fas fa-trash-alt text-dark"></i>
+                <% end %>
+              </td>
+              <% @payment += user_course.course.price %>
             <% end %>
-          </td>
-          <% @payment += user_course.course.price %>
+          </tr>
         <% end %>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-<hr>
-<div class="row d-flex justify-content-between">
-  <%= button_to [:user, :carts], class: "btn btn-danger ml-3",
-    data: { confirm: "Xác nhận thanh toán #{@payment}$ ?" } do %>
-    <i class="fas fa-money-check-alt"></i>
-    <span>Thanh toán</span>
-  <% end %>
-  <h2 class="mr-3">Tổng tiền: <%= @payment %></h2>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-between">
+      <%= button_to [:user, :carts], id: "cart-button", class: "btn btn-danger ml-3",
+        data: { confirm: "Xác nhận thanh toán #{@payment}$ ?" } do %>
+        <i class="fas fa-money-check-alt"></i>
+        <span>Thanh toán</span>
+      <% end %>
+      <h2 class="mr-3">
+        Tổng tiền: <%= number_to_currency(@payment, unit: "đ", 
+          precision: 0, format: "%n %u") %>
+      </h2>
+    </div>
+  </div>
 </div>
