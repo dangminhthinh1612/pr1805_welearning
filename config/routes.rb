@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "dashboards#index"
+    get "/chart", to: "dashboards#chart"
 
     scope shallow_prefix: "sname" do
       resources :courses do

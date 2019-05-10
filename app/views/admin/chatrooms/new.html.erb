@@ -1,0 +1,13 @@
+<div class="row d-flex justify-content-center">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for [:admin, @chatroom] do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
+      <%= f.label :name, "Tên nhóm chat" %>
+      <%= f.text_field :name, class: "form-control mb-2" %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :support, value: true %>
+      <%= f.submit "Tạo phòng chat",
+        class: "mt-3 btn btn-primary btn-sm btn-block" %>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,8 @@
 //= require ./lib/jquery
 //= require ./lib/jquery.easing
 //= require ./lib/sb-admin-2
+//= require ./lib/highcharts
+//= require ./lib/exporting
 //= require rails-ujs
 //= require turbolinks
 //= require ./lib/Moment
