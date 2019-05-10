@@ -1,0 +1,12 @@
+<tbody>
+  <tr>
+    <td><%= excercise.excercise_name %></td>
+    <td><%= link_to "Chi tiết", admin_excercise_path(excercise),
+      class: "btn btn-info btn-sm" %></td>
+    <td><%= link_to "Thay đổi", edit_admin_excercise_path(excercise),
+      class: "btn btn-warning btn-sm" %></td>
+    <td><%= link_to "Xóa", admin_excercise_path(excercise), method: :delete,
+      class: "btn btn-danger btn-sm",
+      data: {confirm: "Xác nhận xóa bài tập #{excercise.excercise_name}."} %></td>
+  </tr>
+</tbody>

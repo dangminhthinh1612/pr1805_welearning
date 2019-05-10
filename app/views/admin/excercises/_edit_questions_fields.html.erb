@@ -1,0 +1,15 @@
+<fieldset>
+  <div class="form-inline">
+    <%= f.label :question_content, "Cau hoi" %>
+    <%= f.text_area :question_content, cols: 80, rows: 5, class: "form-control mb-2" %>
+      <%= f.fields_for :answers do |ff|%>
+        <%= render "admin/excercises/edit_answers_fields.html.erb", f: ff, type: ff.object.answer_content  %>
+      <% end %>
+    <%= f.hidden_field :_destroy %> &nbsp;
+    <div class="btn-group-add-field">
+        <%= link_to_add_answers "Add Answer", f, :answers, value: params[:question_id] %>
+    </div> &nbsp;
+    <%= link_to "Remove", "#", class: "remove_question" %>
+  </div>
+  <br>
+</fieldset>
