@@ -40,6 +40,11 @@ Rails.application.routes.draw do
         resources :lessons, shallow: true
       end
     end
+
+    resources :lessons, shallow: true do
+      resources :excercises
+    end
+
     resources :searches, only: :index
     resources :users
 

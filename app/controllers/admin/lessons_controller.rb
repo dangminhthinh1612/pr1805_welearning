@@ -3,7 +3,9 @@ class Admin::LessonsController < Admin::BaseController
   before_action :load_lesson, except: [:new, :create]
   before_action :load_course, only: [:new, :create, :destroy]
 
-  def show; end
+  def show
+    @excercises = @lesson.excercises.ordered_by_name.paginate page: params[:page], per_page: 15
+  end
 
   def new
     @lesson = @course.lessons.build
