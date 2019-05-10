@@ -3,13 +3,11 @@ class Admin::DashboardsController< Admin::BaseController
 
   def index; end
 
-  def chart; end
-
   private
 
   def load_data
     @load_data_week = (6.days.ago.to_date..Date.today).map { |date| 
-      (UserCourse.paid.where("date(created_at) = ?", date)).count}.inspect
+      UserCourse.paid.by_date(date).count}.inspect
     @load_days = (6.days.ago.to_date..Date.today).map {|date| 
       date.strftime("%d/%m")}
 

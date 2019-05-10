@@ -5,13 +5,15 @@
     <i class="fa fa-bars"></i>
   </button>
 
+  <% if controller.controller_name == "users" %>
   <!-- Topbar Search -->
-  <div class="input-group">
-    <%= form_tag admin_searches_path, method: :get, class: "form-inline" do %>
-      <%= text_field_tag :term, "", placeholder: "Search for...", class: "form-control form-control-sm"%>
-      <%= submit_tag "Search", class: "btn btn-primary btn-sm" %>
-    <% end %>
-  </div>
+    <div class="input-group">
+      <%= form_tag admin_searches_path, method: :get, class: "form-inline" do %>
+        <%= text_field_tag :term, "", placeholder: "Search for...", class: "form-control form-control-sm"%>
+        <%= submit_tag "Search", class: "btn btn-primary btn-sm" %>
+      <% end %>
+    </div>
+  <% end %>
 
   <!-- Topbar Navbar -->
   <ul class="navbar-nav ml-auto">
