@@ -1,7 +1,7 @@
 <div id= "right-chat-room" class="col-lg-2">
   <h4>Bộ phận hỗ trợ</h4>
   <% if Chatroom.where(user_id: current_user.id).empty? %>
-    <%= button_to @chatroom, method: :post,
+    <%= button_to chatrooms_path, method: :post,
       params:{ chatroom: { name: current_user.user_name, user_id: current_user.id, support: false }},
       class: "btn btn-primary" do %>
       Chat với admin
